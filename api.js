@@ -106,6 +106,7 @@ getLinks(filePath)
 
 
 module.exports = {
+   isPathValid,
    convertToAbsolute,
    fileMd,
    readFile,
