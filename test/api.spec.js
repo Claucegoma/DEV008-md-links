@@ -35,5 +35,32 @@ describe('convertToAbsolute', () => {
   });
 });
 
+ //test para verificar si es archivo 
+  describe('isFile', () => {
+  it('should return true for an existing file', () => {
+    const filePath = 'C:\\Users\\ceci_\\OneDrive\\Escritorio\\MDLINKS Dev008\\DEV008-md-links\\filesExamples\\withLinks.md';
+    const result = api.isFile(filePath);
+    expect(result).toBe(true);
+  });
+  it('should return false for a non-existing file', () => {
+      const filePath = 'this\\archivo\\noesarchivo.md';
+      const result = api.isFile(filePath);
+      expect(result).toBe(false);
+    });
+  });
 
+//test si es archivo MD
+describe('fileMd', () => {
+  it('debería devolver true si es archivo MD', () => {
+    const filePath = 'C:\\Users\\ceci_\\OneDrive\\Escritorio\\MDLINKS Dev008\\DEV008-md-links\\filesExamples\\withLinks.md';
+    const result = api.fileMd(filePath);
+    expect(result).toBe(true);
+  });
+
+  it('debería devolver false si no es archivo MD', () => {
+    const filePath ='nonexisting\\this\\file.txt';
+    const result = api.fileMd(filePath);
+    expect(result).toBe(false);
+  });
+});
 

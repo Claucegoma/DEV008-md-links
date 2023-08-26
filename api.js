@@ -11,8 +11,8 @@ const isPathValid = (filePath) => {
    return false;
  }
 };
-console.log(chalk.bold.blue(isPathValid(filePath)));
-console.log(chalk.blue('Great! The path exist'));
+/*console.log(chalk.bold.blue(isPathValid(filePath)));
+console.log(chalk.blue('Great! The path exist'));*/
 
 //se valida si la ruta es relativa o absoluta.
 //se resuelve la Ruta como absoluta (se convierte ruta relativa a absoluta)
@@ -25,21 +25,21 @@ function convertToAbsolute(filePath) {
       return absolutePath;
    }
 };
-console.log(chalk.bold.magenta(convertToAbsolute(filePath)));
-console.log(chalk.magenta('Is a absolute path'));
+/*console.log(chalk.bold.magenta(convertToAbsolute(filePath)));
+console.log(chalk.magenta('Is a absolute path'));*/
 
 //fs.statSync dice si es archivo o no
 function isFile(filePath) {
    return fs.statSync(filePath).isFile();
 };
-console.log(chalk.bold.red(isFile(filePath)));
-console.log(chalk.red('Perfect! it is a file'));
+/*console.log(chalk.bold.red(isFile(filePath)));
+console.log(chalk.red('Perfect! it is a file'));*/
 
  //validar si es un archivo md
  const fileMd = (filePath) => {
     return (path.extname(filePath) === ".md");
  };
-console.log(fileMd(filePath));
+/*console.log(fileMd(filePath));*/
 
 
 //Leer archivo (comprobar si tiene links)
@@ -53,13 +53,13 @@ const readFile = (filePath) => new Promise((resolve, reject) => {
    });
 });
 //ver en consola
-readFile(filePath)
+/*readFile(filePath)
    .then(data => {
       console.log(chalk.inverse.white('Contenido del archivo:'), data); // Aquí imprimes el contenido leído
    })
    .catch(error => {
       console.error('Error:', error);
-   });
+   });*/
 
 //obtener links
 const getLinks = (filePath) => new Promise((resolve, reject) => {
@@ -83,7 +83,7 @@ const getLinks = (filePath) => new Promise((resolve, reject) => {
 
 //ver en consola
 // Llamada a la función getLinks
-getLinks(filePath)
+/*getLinks(filePath)
    .then(links => {
       // Imprimir los resultados en la consola
       if (links.length > 0) {
@@ -101,7 +101,7 @@ getLinks(filePath)
    })
    .catch(error => {
       console.error('Error:', error);
-   });
+   });*/
 
 
 
@@ -109,6 +109,7 @@ module.exports = {
    isPathValid,
    convertToAbsolute,
    fileMd,
+   isFile,
    readFile,
    getLinks,
 }
