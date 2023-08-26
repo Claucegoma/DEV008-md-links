@@ -1,4 +1,4 @@
-const {convertToAbsolute, fileMd, readFile, getLinks} = require('./api.js');
+const { convertToAbsolute, fileMd, readFile, getLinks} = require('./api.js');
 const { getStatus } = require('./libAxio.js');
 
 //asincronía (librería nativa FS (FileSystem))//
@@ -36,7 +36,7 @@ const mdLinks = (filePath, options = { validate: false }) => new Promise((resolv
 })
 
 // Llamada a la función mdLinks con un archivo y opciones
-mdLinks('./filesExamples/with-links.md', { validate: true }).then((result) => {
+mdLinks('./filesExamples/withLinks.md', { validate: true }).then((result) => {
   console.log(result);
 }).catch((error) => {
   console.error(error);
