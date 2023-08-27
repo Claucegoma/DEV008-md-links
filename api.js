@@ -28,12 +28,21 @@ function convertToAbsolute(filePath) {
 /*console.log(chalk.bold.magenta(convertToAbsolute(filePath)));
 console.log(chalk.magenta('Is a absolute path'));*/
 
+
 //fs.statSync dice si es archivo o no
 function isFile(filePath) {
-   return fs.statSync(filePath).isFile();
-};
+   try {
+      return fs.statSync(filePath).isFile();
+   }catch (error) {
+      if (error.code === 'ENOENT') {
+         return false; // El archivo no existe, por lo tanto no es un archivo
+      }
+      throw error; // Manejar otros errores de manera adecuada
+   }
+}
 /*console.log(chalk.bold.red(isFile(filePath)));
 console.log(chalk.red('Perfect! it is a file'));*/
+
 
  //validar si es un archivo md
  const fileMd = (filePath) => {
@@ -89,7 +98,7 @@ const getLinks = (filePath) => new Promise((resolve, reject) => {
       if (links.length > 0) {
          console.log(chalk.inverse.yellowBright('Enlaces encontrados:'));
          links.forEach(link => {
-            console.log('Texto:', link.text);
+            console.log('Text:', link.text);
             console.log('URL:', link.href);
             console.log('Archivo:', link.file);
             console.log('---');
