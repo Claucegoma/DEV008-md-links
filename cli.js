@@ -3,9 +3,9 @@ const yargs = require("yargs");
 const { mdLinks, } = require('./index.js');
 const path = require('path');
 const chalk = require('chalk');
-const boxen = require('boxen');
 
-console.log(boxen('¡Welcome to the cecy-md-links library!', {padding: 1, margin: 1, borderStyle: 'double', borderColor: 'green' }));
+
+console.log(chalk.bold.green('¡Welcome to the cecy-md-links library!'));
 
 const options = yargs(process.argv.slice(2))
     .usage(chalk.bold.magentaBright('md-links ./path/to/file.md -v -s')) 
@@ -68,25 +68,22 @@ if (route) {
             } else if (mdLinksOptions.validate) {
                 links.forEach(link => {
                     const statusInfo = link.ok ? chalk.green('ok') : chalk.red('fail');
-                    const formattedLink = boxen(
+                    const formattedLink =
                         `${chalk.bold.blue('href:')} ${chalk.blueBright(link.href)}\n` +
                         `${chalk.bold.blue('File:')} ${chalk.magenta(link.file)}\n` +
                         `${chalk.bold.blue('StatusInfo:')} ${chalk.white(statusInfo)}\n` +
                         `${chalk.bold.blue('Status:')} ${chalk.cyan(link.status)}\n` +
-                        `${chalk.bold.blue('Text:')} ${chalk.yellow(link.text)}\n` ,    
-                        {title: 'Links validation:', padding: 1, margin: 1, borderStyle: 'double' }
-                    );
+                        `${chalk.bold.blue('Text:')} ${chalk.yellow(link.text)}\n` ;   
+                   
                     console.log(formattedLink);
                 });
             } else {
                 // is validation has not being selected, this will run
                 links.forEach(link => {
-                    const formattedLink = boxen(
+                    const formattedLink = 
                         `${chalk.bold.white('File:')} ${chalk.magenta(link.file)}\n` +
                         `${chalk.bold.white('href:')} ${chalk.blueBright(link.href)}\n` +
-                        `${chalk.bold.white('Text:')} ${chalk.yellow(link.text)}\n`,
-                        {padding: 1, margin: 0, borderStyle: 'double'}
-                    );
+                        `${chalk.bold.white('Text:')} ${chalk.yellow(link.text)}\n`;
                     console.log(formattedLink);
                 });
             }
@@ -95,8 +92,8 @@ if (route) {
             console.error(chalk.red(error.message));
         });
 } else {
-    const errorMessage = chalk.red("Something is wrong! try with a valid route.");
-    console.error(boxen(errorMessage, { title: 'Error:', titleAlignment: 'left', padding: 1, margin: 0, borderStyle: 'double' })); 
+    const errorMessage = chalk.red("Something was wrong! try with a valid route.");
+    console.error(errorMessage); 
     yargs.showHelp();
 }
 
